@@ -1,0 +1,24 @@
+export default function SideNav(){
+    return(
+        <>
+            <div>
+                <span>Home</span>
+            </div>
+            <div>
+                <span>Inputs</span>
+            </div>
+            <div>
+                <span>Processors</span>
+            </div>
+            <div>
+                <span>Events</span>
+            </div>
+            <div>
+                <span>Geo-Fences</span>
+            </div>
+            <div>
+                <span>Summaries</span>
+            </div>
+        </>
+    );
+}
