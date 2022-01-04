@@ -10,7 +10,9 @@ export default function InputForm() {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-
+        if (file && features) {
+            console.log(features);
+        }
     }
     const handleFileInput = (e) => {
         if (e.target.files.length > 0){

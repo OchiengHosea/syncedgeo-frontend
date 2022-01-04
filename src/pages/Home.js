@@ -1,9 +1,10 @@
 import InputForm from "../forms/InputForm";
+import SideNav from "../components/SideNav";
 
 export default function Home(){
     return(
         <div>
-            <InputForm />
+            <span className={"display-4"}>Home</span>
         </div>
     )
 }

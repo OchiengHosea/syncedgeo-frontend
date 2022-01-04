@@ -12,7 +12,7 @@ function Model({model}) {
     );
 }
 
-export default function Processor(){
+export default function Processors(){
     const {data: processorInputs, loading, error} = useFetch(urls.geoprocessorsUrl);
     if (loading) return <div>Loading</div>
     if (error) return <div>Error</div>
