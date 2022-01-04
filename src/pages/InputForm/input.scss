@@ -1,0 +1,13 @@
+@import "./src/themes/colors";
+.dropzone {
+  border: dashed 1px lightgray;
+  padding: 5%;
+  text-align: center;
+  &:hover{
+    border-color: darkgrey;
+  }
+}
+
+#file-uploader {
+  min-width: 500px;
+}

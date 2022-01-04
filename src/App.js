@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import {Route, Routes} from "react-router-dom";
 import Processors from "./pages/Processors";
 import Geofences from "./pages/Geofences";
-import Inputs from "./pages/Inputs";
+import Inputs from "./pages/InputForm/Inputs";
 import Dashboard from "./pages/Dashboard";
 import SideNav from "./components/SideNav";
 import InputForm from "./forms/InputForm";
