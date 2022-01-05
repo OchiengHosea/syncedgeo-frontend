@@ -17,6 +17,7 @@ export default function InputForm() {
 
     const handleSubmit = () => {
         if (file && features) {
+            console.log(features);
             setLoading(true);
             setServerErrors([]);
             setSuccessMessage(null);
@@ -29,7 +30,12 @@ export default function InputForm() {
                 }, 2000);
             }).catch(err => {
                setSuccessMessage(null);
-               handleFormServerError(err, setLoading, setServerErrors);
+               // handleFormServerError(err, setLoading, setServerErrors);
+                setTimeout(() => {
+                    setLoading(false);
+                    setSuccessMessage(null);
+                    setServerErrors(["Ensure that your geojson is valid and every feature has name and description in its properties"]);
+                }, 2000);
             });
         }
     }
@@ -40,16 +46,16 @@ export default function InputForm() {
 
             fileReader.onload = function() {
                 try {
-                    const fts = turf.featureCollection(JSON.parse(fileReader.result), {});
+                    const fts = JSON.parse(fileReader.result);
                     setFeatures(fts);
                     setFile(uploadedFile);
                 } catch (e) {
-                    setFileErrors([...fileErrors, "Invalid or corrupted contents"])
+                    setFileErrors(["Invalid or corrupted contents"]);
                 }
             };
             fileReader.readAsText(uploadedFile);
         } else {
-            setFileErrors([...fileErrors, "No file selected"])
+            setFileErrors(["No file selected"])
         }
     }
 

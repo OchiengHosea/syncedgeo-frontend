@@ -21,8 +21,8 @@ const handleFormServerError = (serverErrorResponse, loadingCallback, setServerEr
     if (serverErrorResponse.response) {
         const {data} = serverErrorResponse.response;
         const {message} = data;
-        const {statusText} = serverErrorResponse.response;
-        const errData = data["data"]
+        const {statusText, status} = serverErrorResponse.response;
+
         if (message) {
             setTimeout(() => {
                 loadingCallback(false)
@@ -30,17 +30,17 @@ const handleFormServerError = (serverErrorResponse, loadingCallback, setServerEr
             }, 2000);
         }
 
-        if (statusText){
+        if (statusText && status >= 500){
             setTimeout(() => {
                 loadingCallback(false)
                 setServerErrorsCallback([statusText]);
             }, 2000);
         }
 
-        if (errData) {
+        if (data) {
             setTimeout(() => {
                 loadingCallback(false)
-                setServerErrorsCallback(errData);
+                setServerErrorsCallback(data);
             }, 2000);
         }
     }

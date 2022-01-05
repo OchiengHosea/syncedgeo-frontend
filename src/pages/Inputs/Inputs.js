@@ -2,12 +2,16 @@ import useFetch from "../../services/useFetch";
 import {urls} from "../../services/urls";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
 import { DialogTitle } from "@material-ui/core";
 import {IoMdClose} from 'react-icons/io';
+import {VscActivateBreakpoints} from 'react-icons/vsc';
+import {MdOutlineLinearScale} from 'react-icons/md';
+import {FaDrawPolygon} from 'react-icons/fa';
+import {IoCloudUpload} from 'react-icons/io5';
 import InputForm from "../../forms/InputForm";
 import "./input.scss";
+import {Loader} from "../../utils/Loaders";
 
 export default function Inputs() {
     const [featureType, setFeatureType] = useState("Point");
@@ -28,6 +32,7 @@ export default function Inputs() {
     useEffect(() => {
         setParams({input_type:featureType});
     }, [featureType]);
+
     useEffect(() => {
         setLoading(true);
         if (featureType) {
@@ -41,17 +46,33 @@ export default function Inputs() {
             })
         }
     }, [params]);
-    if (loading) return <div>Loading</div>
+    if (loading) return <Loader/>
     if (error) return <div>Error</div>
     return(
         <div>
             <div className={"feature-input-select"}>
-                {featureTypes.map(type => <div key={type} className={"feature-input-type"} onClick={() => setFeatureType(type)}>{type}</div>)}
+                {featureTypes.map(type =>
+                    <span key={type}
+                          className={"feature-input-type badge text-primary rounded-3 pointer border me-2"}
+                          onClick={() => setFeatureType(type)}>
+                        <span className={"text-black-50"}>
+                            {type === "Point" && <VscActivateBreakpoints />}
+                            {type === "LineString" && <MdOutlineLinearScale />}
+                            {type === "Polygon" && <FaDrawPolygon />}
+                        </span>
+
+                        <span className={"ms-2"}>{type}</span>
+                    </span>)}
             </div>
 
             <div>
-                <div>
-                    <span className={"badge badge-sm text-black-50"} onClick={() => setInputFormOpen(true)}>Add input</span>
+                <div className={"mt-2"}>
+                    <span
+                        className={"badge badge-sm text-black-50 pointer"}
+                        onClick={() => setInputFormOpen(true)}>
+                        <span className={"text-black-50 me-2"}>{<IoCloudUpload />}</span>
+                        Upload features
+                    </span>
                 </div>
 
                 <span className={"display-5"}>{features.features.length}</span>

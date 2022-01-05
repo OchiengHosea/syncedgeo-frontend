@@ -1,4 +1,7 @@
 @import "../src/themes/default";
+body{
+  transition: 1s all linear;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -15,4 +18,8 @@ code {
 
 .pointer {
   cursor: pointer;
+}
+
+svg{
+  stroke: $primary;
 }
