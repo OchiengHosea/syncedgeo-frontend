@@ -1,6 +1,6 @@
 @import "../src/themes/default";
-body{
-  transition: 1s all linear;
+*:not(path){
+  transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1)
 }
 body {
   margin: 0;

@@ -36,7 +36,6 @@ export default function Inputs() {
     useEffect(() => {
         setLoading(true);
         if (featureType) {
-
             axios.get(urls.featureInputsUrl, {params: params}).then(res => {
                 console.log(res.data);
                 setFeatures(res.data);
@@ -75,7 +74,32 @@ export default function Inputs() {
                     </span>
                 </div>
 
-                <span className={"display-5"}>{features.features.length}</span>
+                <div className={"text-center"}>
+                    <span className={"text-info"}>{features.features.length === 0 && "No features uploaded yet!"}</span>
+                </div>
+
+                <table className={"table table-sm table-responsive"}>
+                    <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>Name</th>
+                            <th>Created on</th>
+                            <th>Description</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {features.features.map((feature, i) =>
+                        <tr key={feature.properties.id}>
+                            <td>{i+1}</td>
+                            <td>{feature.properties.name}</td>
+                            <td>{feature.properties.created_on}</td>
+                            <td>{feature.properties.description}</td>
+                            <td>{JSON.stringify(feature.properties.data)}</td>
+                        </tr>
+                    )}
+                    </tbody>
+                </table>
             </div>
 
             <Dialog

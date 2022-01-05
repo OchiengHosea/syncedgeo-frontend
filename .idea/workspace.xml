@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38a01706-1fd6-48ec-b7b4-d2a80c796f3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/svgs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/Loaders.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/InputForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/InputForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/InputForm/Inputs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Inputs/Inputs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/InputForm/input.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Inputs/input.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/widgets.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/widgets.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Inputs/Inputs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Inputs/Inputs.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +73,7 @@
       <workItem from="1641136261512" duration="17595000" />
       <workItem from="1641278361369" duration="5266000" />
       <workItem from="1641293671874" duration="154000" />
-      <workItem from="1641293965117" duration="19485000" />
+      <workItem from="1641293965117" duration="22387000" />
     </task>
     <servers />
   </component>
