@@ -11,7 +11,7 @@ import {FaDrawPolygon} from 'react-icons/fa';
 import {IoCloudUpload} from 'react-icons/io5';
 import InputForm from "../../forms/InputForm";
 import "./input.scss";
-import {Loader} from "../../utils/Loaders";
+import {ErrorLoading, Loader} from "../../utils/Loaders";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 export default function Inputs() {
@@ -37,18 +37,25 @@ export default function Inputs() {
     useEffect(() => {
         setLoading(true);
         if (featureType) {
-            axios.get(urls.featureInputsUrl, {params: params}).then(res => {
-                setTimeout(() => {
-                    setFeatures(res.data);
-                    setLoading(false);
-                }, 2000);
-            }).catch(err => {
-                setError(["An error occurred"]);
-            })
+            axios
+                .get(urls.featureInputsUrl, {params: params})
+                .then(res => {
+                    setTimeout(() => {
+                        setFeatures(res.data);
+                        setLoading(false);
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.log(err.response);
+                    setTimeout(() => {
+                        setLoading(false);
+                        setServerErrors(["An error occurred"]);
+                    }, 2000);
+                })
         }
     }, [params]);
     if (loading) return <Loader/>
-    if (error) return <div>Error</div>
+    if (serverErrors) return <ErrorLoading allowReload={true} />
     return(
             <div className={"animate-entry"}>
                 <div className={"feature-input-select"}>
@@ -77,7 +84,7 @@ export default function Inputs() {
                     </div>
 
                     <div className={"text-center"}>
-                        <span className={"text-info"}>{features.features.length === 0 && "No features uploaded yet!"}</span>
+                        <span className={"text-info"}>{features?.features.length === 0 && "No features uploaded yet!"}</span>
                     </div>
 
                     <table className={"table table-sm table-responsive"}>
@@ -91,7 +98,7 @@ export default function Inputs() {
                         </tr>
                         </thead>
                         <tbody>
-                        {features.features.map((feature, i) =>
+                        {features?.features.map((feature, i) =>
                             <tr key={feature.properties.id}>
                                 <td>{i+1}</td>
                                 <td>{feature.properties.name}</td>
