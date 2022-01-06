@@ -23,3 +23,15 @@ code {
 svg{
   stroke: $primary;
 }
+
+.animate-entry {
+  opacity: 0.01;
+  transform: scale(1.1);
+  animation: animate-entry .5s linear .5s forwards;
+}
+
+@keyframes animate-entry {
+  0% {opacity: 0.01; transform: scale(1.1);}
+  50% {opacity: 0.5; transform: scale(1.05);}
+  100% {opacity: 1; transform: scale(1);}
+}

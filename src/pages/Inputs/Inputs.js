@@ -12,6 +12,7 @@ import {IoCloudUpload} from 'react-icons/io5';
 import InputForm from "../../forms/InputForm";
 import "./input.scss";
 import {Loader} from "../../utils/Loaders";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 export default function Inputs() {
     const [featureType, setFeatureType] = useState("Point");
@@ -37,9 +38,10 @@ export default function Inputs() {
         setLoading(true);
         if (featureType) {
             axios.get(urls.featureInputsUrl, {params: params}).then(res => {
-                console.log(res.data);
-                setFeatures(res.data);
-                setLoading(false);
+                setTimeout(() => {
+                    setFeatures(res.data);
+                    setLoading(false);
+                }, 2000);
             }).catch(err => {
                 setError(["An error occurred"]);
             })
@@ -48,12 +50,12 @@ export default function Inputs() {
     if (loading) return <Loader/>
     if (error) return <div>Error</div>
     return(
-        <div>
-            <div className={"feature-input-select"}>
-                {featureTypes.map(type =>
-                    <span key={type}
-                          className={"feature-input-type badge text-primary rounded-3 pointer border me-2"}
-                          onClick={() => setFeatureType(type)}>
+            <div className={"animate-entry"}>
+                <div className={"feature-input-select"}>
+                    {featureTypes.map(type =>
+                        <span key={type}
+                              className={"feature-input-type badge text-primary rounded-3 pointer border me-2"}
+                              onClick={() => setFeatureType(type)}>
                         <span className={"text-black-50"}>
                             {type === "Point" && <VscActivateBreakpoints />}
                             {type === "LineString" && <MdOutlineLinearScale />}
@@ -62,24 +64,24 @@ export default function Inputs() {
 
                         <span className={"ms-2"}>{type}</span>
                     </span>)}
-            </div>
+                </div>
 
-            <div>
-                <div className={"mt-2"}>
+                <div>
+                    <div className={"mt-2"}>
                     <span
                         className={"badge badge-sm text-black-50 pointer"}
                         onClick={() => setInputFormOpen(true)}>
                         <span className={"text-black-50 me-2"}>{<IoCloudUpload />}</span>
                         Upload features
                     </span>
-                </div>
+                    </div>
 
-                <div className={"text-center"}>
-                    <span className={"text-info"}>{features.features.length === 0 && "No features uploaded yet!"}</span>
-                </div>
+                    <div className={"text-center"}>
+                        <span className={"text-info"}>{features.features.length === 0 && "No features uploaded yet!"}</span>
+                    </div>
 
-                <table className={"table table-sm table-responsive"}>
-                    <thead>
+                    <table className={"table table-sm table-responsive"}>
+                        <thead>
                         <tr>
                             <th>Index</th>
                             <th>Name</th>
@@ -87,34 +89,34 @@ export default function Inputs() {
                             <th>Description</th>
                             <th>Data</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                    {features.features.map((feature, i) =>
-                        <tr key={feature.properties.id}>
-                            <td>{i+1}</td>
-                            <td>{feature.properties.name}</td>
-                            <td>{feature.properties.created_on}</td>
-                            <td>{feature.properties.description}</td>
-                            <td>{JSON.stringify(feature.properties.data)}</td>
-                        </tr>
-                    )}
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                        {features.features.map((feature, i) =>
+                            <tr key={feature.properties.id}>
+                                <td>{i+1}</td>
+                                <td>{feature.properties.name}</td>
+                                <td>{feature.properties.created_on}</td>
+                                <td>{feature.properties.description}</td>
+                                <td>{JSON.stringify(feature.properties.data)}</td>
+                            </tr>
+                        )}
+                        </tbody>
+                    </table>
+                </div>
 
-            <Dialog
-                open={inputFormIsOpen}
-                onClose={handleCloseInputForm}
-                aria-labelledby="parent-modal-title"
-                aria-describedby="parent-modal-description">
+                <Dialog
+                    open={inputFormIsOpen}
+                    onClose={handleCloseInputForm}
+                    aria-labelledby="parent-modal-title"
+                    aria-describedby="parent-modal-description">
 
-                <DialogTitle className={"bg-light"}>
+                    <DialogTitle className={"bg-light"}>
                     <span className={"d-flex"}>Upload Features<small className={"ms-auto"}>
                         <IoMdClose onClick={() => setInputFormOpen(false)} /></small></span>
-                </DialogTitle>
+                    </DialogTitle>
 
-                <InputForm />
-            </Dialog>
-        </div>
+                    <InputForm />
+                </Dialog>
+            </div>
     );
 }
