@@ -23,7 +23,9 @@ export default function useFetch(url, method='GET', body=null, params=null) {
             } catch (e) {
                 setError(e);
             } finally {
-                setLoading(false);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 2000);
             }
         }
         init();  

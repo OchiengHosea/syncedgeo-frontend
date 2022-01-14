@@ -35,3 +35,30 @@ svg{
   50% {opacity: 0.5; transform: scale(1.05);}
   100% {opacity: 1; transform: scale(1);}
 }
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.responsive-text {
+  @media only screen and (max-width: 481px) {
+    font-size: small;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    font-size: small;
+  }
+
+  @media only screen and (max-width: 768px) {
+    font-size: small;
+  }
+
+  @media only screen and (max-width: 480px) {
+    font-size: smaller;
+  }
+
+  @media only screen and (max-width: 320px) {
+    font-size: x-small;
+    transition: 1s;
+  }
+}

@@ -3,7 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Home from "./pages/Home";
 import {Route, Routes} from "react-router-dom";
 import Processors from "./pages/Processors";
-import Geofences from "./pages/Geofences";
+import Geofences from "./pages/Geofences/Geofences";
 import Inputs from "./pages/Inputs/Inputs";
 import Dashboard from "./pages/Dashboard";
 import SideNav from "./components/SideNav";
@@ -16,7 +16,7 @@ function App() {
             <div style={{width:220}}>
                 <SideNav></SideNav>
             </div>
-            <div className={"w-100"}>
+            <div className={"w-100 data-pane"}>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dashboard" element={<Dashboard />} />

@@ -46,7 +46,6 @@ export default function Inputs() {
                     }, 2000);
                 })
                 .catch(err => {
-                    console.log(err.response);
                     setTimeout(() => {
                         setLoading(false);
                         setServerErrors(["An error occurred"]);
@@ -99,7 +98,7 @@ export default function Inputs() {
                         </thead>
                         <tbody>
                         {features?.features.map((feature, i) =>
-                            <tr key={feature.properties.id}>
+                            <tr key={feature.id}>
                                 <td>{i+1}</td>
                                 <td>{feature.properties.name}</td>
                                 <td>{feature.properties.created_on}</td>

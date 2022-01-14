@@ -1,0 +1,20 @@
+table {
+  overflow-x: scroll;
+}
+.geofence-summary {
+    //width: 20vw;
+    height: 300px;
+    //border-radius: 5%;
+    //border-radius: 25%;
+  .feature-summary small {
+    margin-right: 10px;
+  }
+  .feature-summary small span {
+    margin-right: 3px;
+  }
+}
+
+
+.geofence-table-div {
+  overflow-x: auto !important;
+}
