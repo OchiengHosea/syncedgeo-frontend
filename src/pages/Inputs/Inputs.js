@@ -1,4 +1,3 @@
-import useFetch from "../../services/useFetch";
 import {urls} from "../../services/urls";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -12,7 +11,7 @@ import {IoCloudUpload} from 'react-icons/io5';
 import InputForm from "../../forms/InputForm";
 import "./input.scss";
 import {ErrorLoading, Loader} from "../../utils/Loaders";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import useFetch from "../../services/useFetch";
 
 export default function Inputs() {
     const [featureType, setFeatureType] = useState("Point");
@@ -57,7 +56,7 @@ export default function Inputs() {
     if (serverErrors) return <ErrorLoading allowReload={true} />
     return(
             <div className={"animate-entry"}>
-                <div className={"feature-input-select"}>
+                <div className={"feature-input-select m-2"}>
                     {featureTypes.map(type =>
                         <span key={type}
                               className={"feature-input-type badge text-primary rounded-3 pointer border me-2"}
@@ -73,41 +72,43 @@ export default function Inputs() {
                 </div>
 
                 <div>
-                    <div className={"mt-2"}>
-                    <span
-                        className={"badge badge-sm text-black-50 pointer"}
-                        onClick={() => setInputFormOpen(true)}>
-                        <span className={"text-black-50 me-2"}>{<IoCloudUpload />}</span>
-                        Upload features
-                    </span>
+                    <div className={"m-2"}>
+                        <span
+                            className={"badge badge-sm text-black-50 pointer"}
+                            onClick={() => setInputFormOpen(true)}>
+                            <span className={"text-black-50 me-2"}>{<IoCloudUpload />}</span>
+                            Upload features
+                        </span>
                     </div>
 
-                    <div className={"text-center"}>
+                    <div className={"text-center m-2"}>
                         <span className={"text-info"}>{features?.features.length === 0 && "No features uploaded yet!"}</span>
                     </div>
 
-                    <table className={"table table-sm table-responsive"}>
-                        <thead>
-                        <tr>
-                            <th>Index</th>
-                            <th>Name</th>
-                            <th>Created on</th>
-                            <th>Description</th>
-                            <th>Data</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {features?.features.map((feature, i) =>
-                            <tr key={feature.id}>
-                                <td>{i+1}</td>
-                                <td>{feature.properties.name}</td>
-                                <td>{feature.properties.created_on}</td>
-                                <td>{feature.properties.description}</td>
-                                <td>{JSON.stringify(feature.properties.data)}</td>
+                    <div className={"table-div border m-3 p-2"}>
+                        <table className={"table table-sm table-responsive"}>
+                            <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Name</th>
+                                <th>Created on</th>
+                                <th>Description</th>
+                                <th>Data</th>
                             </tr>
-                        )}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {features?.features.map((feature, i) =>
+                                <tr key={feature.id}>
+                                    <td>{i+1}</td>
+                                    <td>{feature.properties.name}</td>
+                                    <td>{feature.properties.created_on}</td>
+                                    <td>{feature.properties.description}</td>
+                                    <td>{JSON.stringify(feature.properties.data)}</td>
+                                </tr>
+                            )}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <Dialog

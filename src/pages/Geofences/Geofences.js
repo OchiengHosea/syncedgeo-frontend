@@ -3,12 +3,15 @@ import * as turf from "@turf/turf";
 import useFetch from "../../services/useFetch";
 import {urls} from "../../services/urls";
 import {ErrorLoading, Loader} from "../../utils/Loaders";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import "./geofences.scss"
+import axios from "axios";
+import PointTable from "../../tables/Point";
 export default function Geofences() {
     const [geofenceWebSocket, setGeofenceWebSocket] = useState(null);
     const {data: geofences, loading, error} = useFetch(urls.geofencesUrl);
-    console.log(geofences);
+    const [geofencePoints, setGeofencePoints] = useState(null);
+
     const extractOrigin = (name) => {
         const data = name.split("_");
         return <small>{data[1]}, {data[2]}</small>;
@@ -45,7 +48,7 @@ export default function Geofences() {
     }
 
     const subscribeToGeofence = (feature) => {
-        extractCentroid(feature)
+        extractCentroid(feature);
         if (geofenceWebSocket){
             // close the current websocket and open a new one again
         } else {
@@ -59,15 +62,22 @@ export default function Geofences() {
         }
     }
 
+    useEffect(async () => {
+        if (geofenceWebSocket){
+            const points = (await axios.get(urls.featureInputsUrl, {params: {input_type: "Point"}})).data;
+            setGeofencePoints(points);
+        }
+    }, [geofenceWebSocket]);
+
     if (loading) return <Loader />
     if (error) return <ErrorLoading allowReload={true} />
     return(
         <div className={"animate-entry"}>
-            <div>
+            <div className={"m-2"}>
                 <h3>Geo-fences</h3>
             </div>
             <div className={"col-12 m-0 p-0"}>
-                <div className={"border m-3 p-2 geofence-table-div"}>
+                <div className={"border m-3 p-2 table-div"}>
                     <table className={"table table-sm table-responsive m-2 p-2"}>
                         <thead>
                         <tr>
@@ -119,13 +129,13 @@ export default function Geofences() {
                 </div>
                 <div className={"col-xl-9 col-lg-8 col-md-7 col-sm-12 col-xs-12 m-0 p-0"}>
                     <div className={"m-2 mt-3"}>
-                        <div className={"m-2 p-2 border rounded-3 shadow-sm"}>
-                            <h5>Points</h5>
+                        <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
+                            <PointTable features={geofencePoints}/>
                         </div>
-                        <div className={"m-2 p-2 border rounded-3 shadow-sm"}>
+                        <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
                             <h5>Lines</h5>
                         </div>
-                        <div className={"m-2 p-2 border rounded-3 shadow-sm"}>
+                        <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
                             <h5>Polygons</h5>
                         </div>
                     </div>
