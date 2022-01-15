@@ -1,4 +1,4 @@
-export default function PointTable({features}) {
+export default function FeatureTable({features}) {
     return(
         <div className={"table-div border m-3 p-2"}>
             <table className={"table table-sm table-responsive"}>

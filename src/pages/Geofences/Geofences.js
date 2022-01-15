@@ -6,11 +6,13 @@ import {ErrorLoading, Loader} from "../../utils/Loaders";
 import {useEffect, useState} from "react";
 import "./geofences.scss"
 import axios from "axios";
-import PointTable from "../../tables/Point";
+import FeatureTable from "../../tables/Features";
 export default function Geofences() {
     const [geofenceWebSocket, setGeofenceWebSocket] = useState(null);
     const {data: geofences, loading, error} = useFetch(urls.geofencesUrl);
     const [geofencePoints, setGeofencePoints] = useState(null);
+    const [geofenceLines, setGeofenceLines] = useState(null);
+    const [geofencePolygons, setGeofencePolygons] = useState(null);
 
     const extractOrigin = (name) => {
         const data = name.split("_");
@@ -62,12 +64,42 @@ export default function Geofences() {
         }
     }
 
+    const getfeofenceGeneralStatistics = () => {
+        const statistics = {
+            total:0
+        }
+        if (geofencePoints !== null) statistics.total += geofencePoints.features.length;
+        if (geofencePolygons !== null) statistics.total += geofencePolygons.features.length;
+        if (geofenceLines !== null) statistics.total += geofenceLines.features.length
+
+        return statistics;
+    }
+
     useEffect(async () => {
         if (geofenceWebSocket){
             const points = (await axios.get(urls.featureInputsUrl, {params: {input_type: "Point"}})).data;
+            const lines = (await axios.get(urls.featureInputsUrl, {params: {input_type: "LineString"}})).data;
+            const polygons = (await axios.get(urls.featureInputsUrl, {params: {input_type: "Polygon"}})).data;
             setGeofencePoints(points);
+            setGeofenceLines(lines);
+            setGeofencePolygons(polygons);
         }
     }, [geofenceWebSocket]);
+
+    const geofenceSummary = <>
+        {(geofencePoints || geofenceLines || geofencePolygons) && <div className={"m-auto responsive-text"}>
+            <div className={"text-center"}>
+                <div>{getfeofenceGeneralStatistics().total}</div>
+                <div>Total Features</div>
+            </div>
+            <hr />
+            <div className={"text-center feature-summary"}>
+                <small><span>2</span>Points</small>
+                <small><span>12</span>Lines</small>
+                <small><span>21</span>Polygons</small>
+            </div>
+        </div> }
+    </>
 
     if (loading) return <Loader />
     if (error) return <ErrorLoading allowReload={true} />
@@ -112,32 +144,21 @@ export default function Geofences() {
                 <div className={"col-xl-3 col-lg-4 col-md-5 col-sm-12 col-xs-12 m-0 p-0"}>
                     <div className={"m-2 p-2"}>
                         <div className={"geofence-summary border shadow-sm p-3 d-flex"}>
-                            <div className={"m-auto responsive-text"}>
-                                <div className={"text-center"}>
-                                    <div>18</div>
-                                    <div>Total Features</div>
-                                </div>
-                                <hr />
-                                <div className={"text-center feature-summary"}>
-                                    <small><span>2</span>Points</small>
-                                    <small><span>12</span>Lines</small>
-                                    <small><span>21</span>Polygons</small>
-                                </div>
-                            </div>
+                            {geofenceWebSocket ? geofenceSummary : <div className={"text-center d-flex"}><h4 className={"m-auto"}>Select a Geofence to view its summary</h4></div>}
                         </div>
                     </div>
                 </div>
                 <div className={"col-xl-9 col-lg-8 col-md-7 col-sm-12 col-xs-12 m-0 p-0"}>
                     <div className={"m-2 mt-3"}>
-                        <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
-                            <PointTable features={geofencePoints}/>
-                        </div>
-                        <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
-                            <h5>Lines</h5>
-                        </div>
-                        <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
-                            <h5>Polygons</h5>
-                        </div>
+                        {geofencePoints && <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
+                            <FeatureTable features={geofencePoints}/>
+                        </div>}
+                        {geofenceLines && <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
+                            <FeatureTable features={geofenceLines} />
+                        </div>}
+                        {geofencePolygons && <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
+                            <FeatureTable features={geofencePolygons} />
+                        </div>}
                     </div>
                 </div>
             </div>
