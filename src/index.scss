@@ -40,6 +40,25 @@ svg{
   overflow-x: auto !important;
 }
 
+.fullscreen-table-div{
+  max-height: 800px;
+  table {
+    thead{
+      //position: fixed;
+      //width: 100%;
+    }
+  }
+}
+
+.form-control:active, .form-control:focus, button:active, button:focus {
+  box-shadow: none !important;
+}
+
+buton:active, button:focus{
+  outline: none !important;
+}
+
+
 .responsive-text {
   @media only screen and (max-width: 481px) {
     font-size: small;

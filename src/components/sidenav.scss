@@ -1,3 +1,51 @@
+@import "./../themes/colors.scss";
+#sidenav {
+  width: 200px;
+}
 .sidenav > div {
   padding: 3%;
+  cursor: pointer;
+  &:hover:not(first-child){
+    background-color: $light;
+  }
+  a {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+a {
+  text-decoration: none;
+  span:first-child{
+    margin: 0 1em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  a span:last-child{
+    display: none;
+  }
+
+  #brand-name{
+    display: none;
+  }
+
+  #sidenav {
+    width: 50px;
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+  a span:last-child{
+    display: block;
+  }
+
+  #brand-name{
+    display: block;
+  }
+
+  #sidenav {
+    width: 200px;
+  }
 }

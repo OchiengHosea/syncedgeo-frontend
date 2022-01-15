@@ -64,7 +64,7 @@ export default function Geofences() {
         }
     }
 
-    const getfeofenceGeneralStatistics = () => {
+    const getgeofenceGeneralStatistics = () => {
         const statistics = {
             total:0
         }
@@ -89,14 +89,15 @@ export default function Geofences() {
     const geofenceSummary = <>
         {(geofencePoints || geofenceLines || geofencePolygons) && <div className={"m-auto responsive-text"}>
             <div className={"text-center"}>
-                <div>{getfeofenceGeneralStatistics().total}</div>
+                <div>{getgeofenceGeneralStatistics().total}</div>
                 <div>Total Features</div>
             </div>
             <hr />
             <div className={"text-center feature-summary"}>
-                <small><span>2</span>Points</small>
-                <small><span>12</span>Lines</small>
-                <small><span>21</span>Polygons</small>
+                {/*<small><span>2</span>Points</small>*/}
+                {/*<small><span>12</span>Lines</small>*/}
+                {/*<small><span>21</span>Polygons</small>*/}
+                <small>Within this geofence</small>
             </div>
         </div> }
     </>

@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
         <div className={"d-flex"}>
-            <div style={{width:220}}>
+            <div>
                 <SideNav></SideNav>
             </div>
             <div className={"w-100 data-pane"}>

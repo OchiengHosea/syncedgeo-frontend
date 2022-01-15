@@ -1,6 +1,5 @@
 import {useRef, useState} from "react";
 import { useNavigate } from 'react-router-dom';
-import * as turf from "@turf/turf";
 import {handleFormServerError, SuccessError} from "../utils/widgets";
 import axios from "axios";
 import {urls} from "../services/urls";

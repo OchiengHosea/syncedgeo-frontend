@@ -7,11 +7,12 @@ import {IoMdClose} from 'react-icons/io';
 import {VscActivateBreakpoints} from 'react-icons/vsc';
 import {MdOutlineLinearScale} from 'react-icons/md';
 import {FaDrawPolygon} from 'react-icons/fa';
-import {IoCloudUpload} from 'react-icons/io5';
+import {IoCloudUpload, IoCloudDownload} from 'react-icons/io5';
 import InputForm from "../../forms/InputForm";
 import "./input.scss";
 import {ErrorLoading, Loader} from "../../utils/Loaders";
 import useFetch from "../../services/useFetch";
+import InputFilterForm from "../../forms/InputFilterForm";
 
 export default function Inputs() {
     const [featureType, setFeatureType] = useState("Point");
@@ -27,6 +28,10 @@ export default function Inputs() {
         if (reason !== "backdropClick") {
             setInputFormOpen(false);
         }
+    }
+
+    const confirmDownloadType = () => {
+        console.log()
     }
 
     useEffect(() => {
@@ -72,20 +77,33 @@ export default function Inputs() {
                 </div>
 
                 <div>
-                    <div className={"m-2"}>
-                        <span
-                            className={"badge badge-sm text-black-50 pointer"}
-                            onClick={() => setInputFormOpen(true)}>
-                            <span className={"text-black-50 me-2"}>{<IoCloudUpload />}</span>
-                            Upload features
-                        </span>
+                    <div className={"m-2 d-flex d-inline"}>
+                        <div>
+                            <span
+                                className={"badge badge-sm text-black-50 pointer"}
+                                onClick={() => setInputFormOpen(true)}>
+                                <span className={"text-black-50 me-2"}>{<IoCloudUpload />}</span>
+                                Upload features
+                            </span>
+
+                            <span
+                                className={"badge badge-sm text-black-50 pointer"}
+                                onClick={() => confirmDownloadType(true)}>
+                                <span className={"text-black-50 me-2"}>{<IoCloudDownload />}</span>
+                                Download features
+                            </span>
+                        </div>
+                        <div className={"col"}></div>
+                        <div className={"me-2"}>
+                            <InputFilterForm />
+                        </div>
                     </div>
 
                     <div className={"text-center m-2"}>
                         <span className={"text-info"}>{features?.features.length === 0 && "No features uploaded yet!"}</span>
                     </div>
 
-                    <div className={"table-div border m-3 p-2"}>
+                    <div className={"table-div fullscreen-table-div border m-3 p-2"}>
                         <table className={"table table-sm table-responsive"}>
                             <thead>
                             <tr>
