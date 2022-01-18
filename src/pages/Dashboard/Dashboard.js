@@ -1,5 +1,6 @@
 import MyMap from "../../map/Map";
 import RecursiveProperty from "../../components/RecursiveProperty";
+import "./dashboard.scss";
 const testJson = {
     "_id": "5bc32f3f5fbd8ad01f8265fd",
     "index": 0,
@@ -60,10 +61,10 @@ const testJson = {
 export default function Dashboard() {
     return(
         <div>
-            <div className={"p-2"}>
-                <span className={"display-5"}>Garmic Fleet Managers</span>
+            <div className={"p-2 bg-white"}>
+                <span className={"display-5"} id={"company-name"}>Garmic Fleet Managers</span>
             </div>
-            <div className={"container-fluid row m-0 p-0"}>
+            <div className={"summary-items container-fluid row m-0 p-3 bg-white"}>
                 <div className={"col-lg-3 col-md-3 col-sm-6 col-6 m-0 p-0"}>
                     <div className={"m-2 p-2 border rounded pointer top-summary-div"}>
                         <span className={"display-6"}>Inputs</span>

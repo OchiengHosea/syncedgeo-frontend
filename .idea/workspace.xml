@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="38a01706-1fd6-48ec-b7b4-d2a80c796f3f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SideNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SideNav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sidenav.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidenav.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/dashboard.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Geofences/Geofences.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Geofences/Geofences.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Inputs/Inputs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Inputs/Inputs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tables/Features.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/tables/Features.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/themes/colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/colors.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +68,7 @@
       <workItem from="1641293965117" duration="45088000" />
       <workItem from="1642012575359" duration="4248000" />
       <workItem from="1642180876634" duration="41896000" />
-      <workItem from="1642443939517" duration="8103000" />
+      <workItem from="1642443939517" duration="9745000" />
     </task>
     <servers />
   </component>

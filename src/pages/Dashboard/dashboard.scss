@@ -1,1 +1,8 @@
 @import "./src/themes/colors";
+.summary-items > div{
+  color: $primary;
+}
+
+#company-name{
+  color: $strongBlue;
+}

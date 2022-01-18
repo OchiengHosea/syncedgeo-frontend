@@ -106,39 +106,41 @@ export default function Geofences() {
     if (error) return <ErrorLoading allowReload={true} />
     return(
         <div className={"animate-entry"}>
-            <div className={"m-2"}>
-                <h3>Geo-fences</h3>
-            </div>
-            <div className={"col-12 m-0 p-0"}>
-                <div className={"border m-3 table-div bg-white shadow-sm rounded-3"}>
-                    <table className={"table table-sm table-hover table-responsive p-2"}>
-                        <thead className={"bg-strong-blue text-white"}>
-                        <tr>
-                            <th>Index</th>
-                            <th>Created on</th>
-                            <th>Origin</th>
-                            <th>Radius</th>
-                            <th>Area</th>
-                            <th>Perimeter</th>
-                            <th>Units</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody className={"p-3"}>
-                        {geofences?.features.map((feature, i) =>
-                            <tr key={feature.id} onClick={() => subscribeToGeofence(feature)}>
-                                <td>{i+1}</td>
-                                <td>{feature.properties.created_on}</td>
-                                <td>{extractOrigin(feature.properties.name)}</td>
-                                <td>{feature.properties.rad}</td>
-                                <td>{extractArea(feature)}</td>
-                                <td>{extractPerimeter(feature)}</td>
-                                <td>{feature.properties.units}</td>
-                                <td>{feature.properties.is_active? "Active" : "Inactive"}</td>
+            <div className={"bg-light p-2"}>
+                <div className={""}>
+                    <h3 className={"text-strong-blue"}>Geo-fences</h3>
+                </div>
+                <div className={"col-12 m-0 p-0"}>
+                    <div className={"border m-3 table-div bg-white shadow-sm rounded-3"}>
+                        <table className={"table table-sm table-hover table-responsive p-2"}>
+                            <thead className={"bg-strong-blue text-white"}>
+                            <tr>
+                                <th>Index</th>
+                                <th>Created on</th>
+                                <th>Origin</th>
+                                <th>Radius</th>
+                                <th>Area</th>
+                                <th>Perimeter</th>
+                                <th>Units</th>
+                                <th>Status</th>
                             </tr>
-                        )}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className={"p-3"}>
+                            {geofences?.features.map((feature, i) =>
+                                <tr key={feature.id} onClick={() => subscribeToGeofence(feature)}>
+                                    <td>{i+1}</td>
+                                    <td>{feature.properties.created_on}</td>
+                                    <td>{extractOrigin(feature.properties.name)}</td>
+                                    <td>{feature.properties.rad}</td>
+                                    <td>{extractArea(feature)}</td>
+                                    <td>{extractPerimeter(feature)}</td>
+                                    <td>{feature.properties.units}</td>
+                                    <td>{feature.properties.is_active? "Active" : "Inactive"}</td>
+                                </tr>
+                            )}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div className={"container-fluid row m-0 p-0"}>

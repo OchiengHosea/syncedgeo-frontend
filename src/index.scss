@@ -62,6 +62,9 @@ buton:active, button:focus{
   background-color: $lightBg;
 }
 
+.text-strong-blue {
+  color: $strongBlue;
+}
 .bg-strong-blue {
   background-color: transparentize($strongBlue, .15);
 }

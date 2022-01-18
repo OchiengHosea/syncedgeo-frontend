@@ -62,11 +62,12 @@ export default function Inputs() {
     if (serverErrors) return <ErrorLoading allowReload={true} />
     return(
             <div className={"animate-entry"}>
-                <div className={"feature-input-select m-2 n"}>
-                    {featureTypes.map(type =>
-                        <span key={type}
-                              className={"feature-input-type badge text-primary rounded-3 pointer border me-2"}
-                              onClick={() => setFeatureType(type)}>
+                <div className={"bg-white p-2"}>
+                    <div className={"feature-input-select"}>
+                        {featureTypes.map(type =>
+                            <span key={type}
+                                  className={"feature-input-type badge text-primary rounded-3 pointer border me-2"}
+                                  onClick={() => setFeatureType(type)}>
                         <span className={"text-black-50"}>
                             {type === "Point" && <VscActivateBreakpoints />}
                             {type === "LineString" && <MdOutlineLinearScale />}
@@ -75,9 +76,7 @@ export default function Inputs() {
 
                         <span className={"ms-2"}>{type}</span>
                     </span>)}
-                </div>
-
-                <div>
+                    </div>
                     <div className={"m-2 d-flex d-inline"}>
                         <div>
                             <span
@@ -100,6 +99,8 @@ export default function Inputs() {
                         </div>
                     </div>
 
+                </div>
+                <div>
                     <div className={"text-center m-2"}>
                         <span className={"text-info"}>{features?.features.length === 0 && "No features uploaded yet!"}</span>
                     </div>
