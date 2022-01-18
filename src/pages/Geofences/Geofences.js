@@ -110,9 +110,9 @@ export default function Geofences() {
                 <h3>Geo-fences</h3>
             </div>
             <div className={"col-12 m-0 p-0"}>
-                <div className={"border m-3 p-2 table-div"}>
-                    <table className={"table table-sm table-responsive m-2 p-2"}>
-                        <thead>
+                <div className={"border m-3 table-div bg-white shadow-sm rounded-3"}>
+                    <table className={"table table-sm table-hover table-responsive p-2"}>
+                        <thead className={"bg-strong-blue text-white"}>
                         <tr>
                             <th>Index</th>
                             <th>Created on</th>
@@ -124,7 +124,7 @@ export default function Geofences() {
                             <th>Status</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody className={"p-3"}>
                         {geofences?.features.map((feature, i) =>
                             <tr key={feature.id} onClick={() => subscribeToGeofence(feature)}>
                                 <td>{i+1}</td>
@@ -144,20 +144,20 @@ export default function Geofences() {
             <div className={"container-fluid row m-0 p-0"}>
                 <div className={"col-xl-3 col-lg-4 col-md-5 col-sm-12 col-xs-12 m-0 p-0"}>
                     <div className={"m-2 p-2"}>
-                        <div className={"geofence-summary border shadow-sm p-3 d-flex"}>
+                        <div className={"geofence-summary border shadow-sm p-3 d-flex bg-white"}>
                             {geofenceWebSocket ? geofenceSummary : <div className={"text-center d-flex"}><h4 className={"m-auto"}>Select a Geofence to view its summary</h4></div>}
                         </div>
                     </div>
                 </div>
                 <div className={"col-xl-9 col-lg-8 col-md-7 col-sm-12 col-xs-12 m-0 p-0"}>
                     <div className={"m-2 mt-3"}>
-                        {geofencePoints && <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
+                        {geofencePoints && <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm bg-white"}>
                             <FeatureTable features={geofencePoints}/>
                         </div>}
-                        {geofenceLines && <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
+                        {geofenceLines && <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm bg-white"}>
                             <FeatureTable features={geofenceLines} />
                         </div>}
-                        {geofencePolygons && <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm"}>
+                        {geofencePolygons && <div className={"geofence-features-div m-2 p-2 border rounded-3 shadow-sm bg-white"}>
                             <FeatureTable features={geofencePolygons} />
                         </div>}
                     </div>

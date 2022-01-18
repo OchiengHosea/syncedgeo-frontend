@@ -1,9 +1,7 @@
 import moment from "moment"
 import {useEffect, useState} from "react";
-import {MyDialog} from "../utils/MyDialog";
 import {DialogTitle} from "@material-ui/core";
 import {IoMdClose} from "react-icons/io";
-import InputForm from "../forms/InputForm";
 import Dialog from "@material-ui/core/Dialog";
 import RecursiveProperty from "../components/RecursiveProperty";
 import styled from "styled-components";
@@ -33,9 +31,9 @@ export default function FeatureTable({features}) {
     }, [selectedFeature]);
     return(
         <div className={"table-div m-3"}>
-            <table className={"table table-sm table-responsive"}>
+            <table className={"table table-sm table-hover table-responsive"}>
                 <thead>
-                <tr>
+                <tr className={"text-secondary"}>
                     <th>Index</th>
                     <th>Name</th>
                     <th>Created on</th>
@@ -48,8 +46,8 @@ export default function FeatureTable({features}) {
                     <tr key={feature.id}>
                         <td><small>{i+1}</small></td>
                         <td><small>{feature.properties.name}</small></td>
-                        <td><small>{moment(feature.properties.created_on).format('Y-MM-DD HH:mm')}</small></td>
-                        <td><small>{feature.properties.description}</small></td>
+                        <td className={"text-black-50"}><small>{moment(feature.properties.created_on).format('Y-MM-DD HH:mm')}</small></td>
+                        <td className={"text-black-50"}><small>{feature.properties.description}</small></td>
                         <td><small><span className={"badge badge-primary border pointer text-black-50"} onClick={() => handleSelecFeature(feature)}>More details</span></small></td>
                     </tr>
                 )}

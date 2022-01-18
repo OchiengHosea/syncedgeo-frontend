@@ -16,7 +16,7 @@ function App() {
             <div>
                 <SideNav></SideNav>
             </div>
-            <div className={"w-100 data-pane"}>
+            <div className={"w-100 data-pane light-bg"}>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dashboard" element={<Dashboard />} />

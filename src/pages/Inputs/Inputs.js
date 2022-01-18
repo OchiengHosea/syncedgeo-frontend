@@ -62,7 +62,7 @@ export default function Inputs() {
     if (serverErrors) return <ErrorLoading allowReload={true} />
     return(
             <div className={"animate-entry"}>
-                <div className={"feature-input-select m-2"}>
+                <div className={"feature-input-select m-2 n"}>
                     {featureTypes.map(type =>
                         <span key={type}
                               className={"feature-input-type badge text-primary rounded-3 pointer border me-2"}
@@ -104,7 +104,7 @@ export default function Inputs() {
                         <span className={"text-info"}>{features?.features.length === 0 && "No features uploaded yet!"}</span>
                     </div>
 
-                    <div className={"table-div fullscreen-table-div border m-3 p-2"}>
+                    <div className={"table-div fullscreen-table-div border m-3 p-2 rounded-3 shadow-sm bg-white"}>
                         <FeatureTable features={features}/>
                     </div>
                 </div>

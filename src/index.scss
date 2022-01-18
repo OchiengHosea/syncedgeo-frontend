@@ -58,6 +58,13 @@ buton:active, button:focus{
   outline: none !important;
 }
 
+.light-bg {
+  background-color: $lightBg;
+}
+
+.bg-strong-blue {
+  background-color: transparentize($strongBlue, .15);
+}
 
 .responsive-text {
   @media only screen and (max-width: 481px) {

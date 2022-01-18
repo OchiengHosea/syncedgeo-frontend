@@ -5,7 +5,7 @@
 .sidenav > div {
   padding: 3%;
   cursor: pointer;
-  &:hover:not(first-child){
+  &:hover{
     background-color: $light;
   }
   a {
